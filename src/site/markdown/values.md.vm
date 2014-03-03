@@ -1,0 +1,47 @@
+
+Values Generation
+======================
+
+With this configuration, the plugin replaces any placeholders entries by picking up only the value.
+
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <fileset>
+                <directory>target/classes/com/myproject/resources</directory>
+                <include>*.properties</include>
+            </fileset>
+            <mode>values</mode>
+        </configuration>
+
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>mustache</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
+
+
+the property file **before** the plugin execution
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=44
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+
+
+the property file **after** the plugin execution
+
+    param1=45
+    param2={{param22}}
+    param3=44
+    param4=http://localhost:8080/default
+
+

@@ -40,28 +40,28 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
     /**
      * The delimiter format
      *
-     * @parameter property="${mustache.delimiters}" default-value="{{ }}"
+     * @parameter property="mustache.delimiters" default-value="{{ }}"
      */
     protected String delimiters;
 
     /**
      * The separator format from the placeholder name and the default value
      *
-     * @parameter property="${mustache.separator}" default-value=":"
+     * @parameter property="mustache.separator" default-value=":"
      */
     protected String valueSeparator;
 
     /**
      * The separator format from the placeholder name and the default value
      *
-     * @parameter property="${mustache.mode}" default-value="placeholders"
+     * @parameter property="mustache.mode" default-value="placeholders"
      */
     protected Mode mode;
 
 
     /**
      * Configure the mojo to generate a default placeholder value from the key name (mode=placeholders only)
-     * @parameter property="${mustache.generateplaceholder}" default-value="true"
+     * @parameter property="mustache.generateplaceholder" default-value="true"
      */
     protected boolean generatePlaceholder;
 

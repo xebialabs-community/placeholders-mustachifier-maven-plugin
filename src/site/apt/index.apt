@@ -1,0 +1,22 @@
+
+ ------
+ Introduction
+ ------
+ Benoit Moussaud
+ ------
+ 2014-03-01
+ ------
+
+
+Mustachifier Plugin
+
+  The Mustachifier Plugin is used to manage values and placeholders in Java property files.
+
+  Further information is available on
+
+  * {{{https://github.com/bmoussaud/mustachifier-maven-plugin} The project site}}
+
+  * Plugin Documentation/Goals on this site
+
+  * via the "help" goal of the plugin itself
+

@@ -1,0 +1,75 @@
+
+Placeholder Generation
+======================
+
+With this configuration, the plugin replaces any placeholders entries by picking up only the name and generate a placeholder based on the key if needed.
+
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <fileset>
+                <directory>target/classes/com/myproject/resources</directory>
+                <include>*.properties</include>
+            </fileset>
+        </configuration>
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>mustache</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
+
+
+The property file **before** the plugin execution
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=44
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+
+
+The property file **after** the plugin execution
+
+    param1={{PARAM1}}
+    param2={{param22}}
+    param3={{param3}
+    param4=http://{{host}}:{{port}}/{{context}}
+
+
+The plugin can be configured to not generate default placeholder if it has been provided
+
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            ...
+            <generatePlaceholder>false</generatePlaceholder>
+            ...
+        </configuration>
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>mustache</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
+In this case the output is the following (check param3)
+
+    param1={{PARAM1}}
+    param2={{param22}}
+    param3=44
+    param4=http://{{host}}:{{port}}/{{context}}
+
+

@@ -10,7 +10,7 @@
 
 Mustachifier Plugin
 
-  The Mustachifier Plugin is used to manage values and placeholders in Java property files.
+  Transform a text file full of {{placeholder:value}} into a file with only {{placeholders}} or only values.
 
   Further information is available on
 

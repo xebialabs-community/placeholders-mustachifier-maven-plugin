@@ -34,9 +34,11 @@
                     <delimiters>{{ }}</delimiters>
                     <mode>placeholders</mode>
                     <generatePlaceholder>true</generatePlaceholder>
-                    <fileset>
-                        <include>XXXXX</include>
-                    </fileset>
+                    <filesets>
+                        <fileset>
+                            <include>XXXXX</include>
+                        </fileset>
+                    </filesets>
                 </configuration>
                 <executions>
                     <execution>

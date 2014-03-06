@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.util.List;
 import java.util.Map;
 import java.util.Properties;
 import org.apache.maven.plugin.AbstractMojo;
@@ -33,45 +34,46 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
     /**
      * FileSet including special entries
      *
-     * @parameter fileset="mustache.fileset"
+     * @parameter
      */
-    protected FileSet fileset;
+    protected List<FileSet> filesets;
 
     /**
      * The delimiter format
      *
-     * @parameter property="mustache.delimiters" default-value="{{ }}"
+     * @parameter default-value="{{ }}"
      */
     protected String delimiters;
 
     /**
      * The separator format from the placeholder name and the default value
      *
-     * @parameter property="mustache.separator" default-value=":"
+     * @parameter default-value=":"
      */
     protected String valueSeparator;
 
     /**
      * The separator format from the placeholder name and the default value
      *
-     * @parameter property="mustache.mode" default-value="placeholders"
+     * @parameter default-value="placeholders"
      */
     protected Mode mode;
 
 
     /**
      * Configure the mojo to generate a default placeholder value from the key name (mode=placeholders only)
-     * @parameter property="mustache.generateplaceholder" default-value="true"
+     *
+     * @parameter default-value="true"
      */
     protected boolean generatePlaceholder;
 
 
-    public FileSet getFileset() {
-        return fileset;
+    public List<FileSet> getFilesets() {
+        return filesets;
     }
 
-    public void setFileset(final FileSet fileset) {
-        this.fileset = fileset;
+    public void setFilesets(final List<FileSet> filesets) {
+        this.filesets = filesets;
     }
 
     public String getDelimiters() {
@@ -112,36 +114,37 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
         final Maps.EntryTransformer<String, String, String> transformer = getTransformer();
 
         FileSetManager fileSetManager = new FileSetManager(getLog());
-        final String[] includedFiles = fileSetManager.getIncludedFiles(fileset);
 
-        for (String includedFile : includedFiles) {
-            final Properties properties = new Properties();
+        for (FileSet fileset : filesets) {
+            final String[] includedFiles = fileSetManager.getIncludedFiles(fileset);
 
-            File file = new File(fileset.getDirectory(), includedFile);
-            getLog().debug(" processing " + file);
-            load(properties, file);
+            for (String includedFile : includedFiles) {
+                final Properties properties = new Properties();
 
-            Map<String, String> processedEntries = newHashMap(transformEntries(fromProperties(properties), transformer));
-            properties.putAll(processedEntries);
+                File file = new File(fileset.getDirectory(), includedFile);
+                getLog().debug(" processing " + file);
+                load(properties, file, fileset.getModelEncoding());
 
-            save(properties, file);
+                Map<String, String> processedEntries = newHashMap(transformEntries(fromProperties(properties), transformer));
+                properties.putAll(processedEntries);
+
+                save(properties, file, fileset.getModelEncoding());
+            }
         }
-
     }
 
-
-    protected void save(final Properties properties, final File file) throws MojoExecutionException {
+    protected void save(final Properties properties, final File file, String encoding) throws MojoExecutionException {
         try {
-            final Writer bufferedWriter = new SkipCommentsBufferedWriter(Files.newWriter(file, Charset.forName(fileset.getModelEncoding())));
+            final Writer bufferedWriter = new SkipCommentsBufferedWriter(Files.newWriter(file, Charset.forName(encoding)));
             properties.store(bufferedWriter, null);
         } catch (Exception e) {
             throw new MojoExecutionException("Cannot write into input file [" + file + "]", e);
         }
     }
 
-    protected void load(final Properties properties, final File file) throws MojoExecutionException {
+    protected void load(final Properties properties, final File file, String encoding) throws MojoExecutionException {
         try {
-            properties.load(Files.newReader(file, Charset.forName(fileset.getModelEncoding())));
+            properties.load(Files.newReader(file, Charset.forName(encoding)));
         } catch (IOException e) {
             throw new MojoExecutionException("Cannot read the input file [" + file + "]", e);
         }

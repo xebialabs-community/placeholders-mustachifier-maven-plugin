@@ -82,7 +82,6 @@
                     <notree>true</notree>
                     <nocomment>true</nocomment>
                     <nohelp>true</nohelp>
-
                 </configuration>
                 <executions>
                     <execution>
@@ -111,6 +110,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-site-plugin</artifactId>
+                <version>3.3</version>
                 <dependencies>
                     <dependency>
                         <groupId>org.kohsuke</groupId>

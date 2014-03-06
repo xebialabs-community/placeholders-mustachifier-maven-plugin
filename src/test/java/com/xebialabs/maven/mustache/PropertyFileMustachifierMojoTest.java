@@ -14,6 +14,7 @@ import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.junit.runners.BlockJUnit4ClassRunner;
+import com.google.common.collect.Lists;
 import com.google.common.io.Files;
 
 @RunWith(BlockJUnit4ClassRunner.class)
@@ -38,7 +39,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.execute();
 
         Properties properties = getPropertiesFromFile(targetFile);
@@ -56,13 +57,72 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.execute();
 
         Properties properties = getPropertiesFromFile(targetFile);
         assertEquals(2, properties.size());
         assertEquals("{{param2}}", properties.get("param2"));
         assertEquals("{{param1}}", properties.get("param1"));
+    }
+
+
+    @Test
+    public void testMultipleFileSetsPlaceholderMode() throws Exception {
+        final File targetFile1 = new File("./target/test-classes/mustache/fs1/config.properties");
+        final File targetFile2 = new File("./target/test-classes/mustache/fs2/config.properties");
+
+        final FileSet fs1 = new FileSet();
+        fs1.setDirectory(targetFile1.getParent());
+        fs1.setIncludes(Collections.singletonList(targetFile1.getName()));
+
+        final FileSet fs2 = new FileSet();
+        fs2.setDirectory(targetFile2.getParent());
+        fs2.setIncludes(Collections.singletonList(targetFile2.getName()));
+
+        PropertyFileMustachifierMojo mojo = getMojo();
+        mojo.setMode(Mode.placeholders);
+        mojo.setFilesets(Lists.newArrayList(fs1, fs2));
+        mojo.execute();
+
+        Properties properties1 = getPropertiesFromFile(targetFile1);
+        assertEquals(2, properties1.size());
+        assertEquals("{{param22}}", properties1.get("param22"));
+        assertEquals("{{param11}}", properties1.get("param11"));
+
+        Properties properties2 = getPropertiesFromFile(targetFile1);
+        assertEquals(2, properties2.size());
+        assertEquals("{{param22}}", properties2.get("param22"));
+        assertEquals("{{param11}}", properties2.get("param11"));
+    }
+
+    @Test
+    public void testMultipleFileSetsValueMode() throws Exception {
+        final File targetFile1 = new File("./target/test-classes/mustache/fs1/config.properties");
+        final File targetFile2 = new File("./target/test-classes/mustache/fs2/config.properties");
+
+        final FileSet fs1 = new FileSet();
+        fs1.setDirectory(targetFile1.getParent());
+        fs1.setIncludes(Collections.singletonList(targetFile1.getName()));
+
+        final FileSet fs2 = new FileSet();
+        fs2.setDirectory(targetFile2.getParent());
+        fs2.setIncludes(Collections.singletonList(targetFile2.getName()));
+
+        PropertyFileMustachifierMojo mojo = getMojo();
+        mojo.setMode(Mode.values);
+        mojo.setFilesets(Lists.newArrayList(fs1, fs2));
+        mojo.execute();
+
+        Properties properties1 = getPropertiesFromFile(targetFile1);
+        assertEquals(2, properties1.size());
+        assertEquals("scott", properties1.get("param11"));
+        assertEquals("tiger", properties1.get("param22"));
+
+        Properties properties2 = getPropertiesFromFile(targetFile2);
+        assertEquals(2, properties2.size());
+        assertEquals("michael", properties2.get("param11"));
+        assertEquals("jackson", properties2.get("param22"));
     }
 
     @Test
@@ -75,7 +135,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
         mojo.setGeneratePlaceholder(false);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.execute();
 
         Properties properties = getPropertiesFromFile(targetFile);
@@ -94,7 +154,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.execute();
 
         Properties properties1 = getPropertiesFromFile(targetFile1);
@@ -117,7 +177,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.setDelimiters("%% ]]");
         mojo.execute();
 
@@ -137,7 +197,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.setDelimiters("%%]]");
         mojo.execute();
     }
@@ -151,7 +211,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.placeholders);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.setValueSeparator(":");
         mojo.execute();
 
@@ -172,7 +232,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.values);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.execute();
 
         Properties properties = getPropertiesFromFile(targetFile);
@@ -191,7 +251,7 @@ public class PropertyFileMustachifierMojoTest extends AbstractMojoTestCase {
 
         PropertyFileMustachifierMojo mojo = getMojo();
         mojo.setMode(Mode.values);
-        mojo.setFileset(fs);
+        mojo.setFilesets(Collections.singletonList(fs));
         mojo.setValueSeparator(":");
         mojo.execute();
 

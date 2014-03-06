@@ -10,10 +10,12 @@ With this configuration, the plugin replaces any placeholders entries by picking
         <artifactId>mustachifier-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
-            <fileset>
-                <directory>target/classes/com/myproject/resources</directory>
-                <include>*.properties</include>
-            </fileset>
+            <filesets>
+                <fileset>
+                    <directory>target/classes/com/myproject/resources</directory>
+                    <include>*.properties</include>
+                </fileset>
+            </filesets>
             <mode>values</mode>
         </configuration>
 

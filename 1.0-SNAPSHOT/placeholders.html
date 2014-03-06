@@ -232,10 +232,12 @@
     &lt;artifactId&gt;mustachifier-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
     &lt;configuration&gt;
-        &lt;fileset&gt;
-            &lt;directory&gt;target/classes/com/myproject/resources&lt;/directory&gt;
-            &lt;include&gt;*.properties&lt;/include&gt;
-        &lt;/fileset&gt;
+        &lt;filesets&gt;
+            &lt;fileset&gt;
+                &lt;directory&gt;target/classes/com/myproject/resources&lt;/directory&gt;
+                &lt;include&gt;*.properties&lt;/include&gt;
+            &lt;/fileset&gt;
+        &lt;filesets&gt;
     &lt;/configuration&gt;
     &lt;executions&gt;
         &lt;execution&gt;
@@ -260,7 +262,7 @@ param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
 
 <pre><code>param1={{PARAM1}}
 param2={{param22}}
-param3={{param3}
+param3={{param3}}
 param4=http://{{host}}:{{port}}/{{context}}
 </code></pre>
 

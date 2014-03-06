@@ -232,10 +232,12 @@
     &lt;artifactId&gt;mustachifier-maven-plugin&lt;/artifactId&gt;
     &lt;version&gt;1.0-SNAPSHOT&lt;/version&gt;
     &lt;configuration&gt;
-        &lt;fileset&gt;
-            &lt;directory&gt;target/classes/com/myproject/resources&lt;/directory&gt;
-            &lt;include&gt;*.properties&lt;/include&gt;
-        &lt;/fileset&gt;
+        &lt;filesets&gt;
+            &lt;fileset&gt;
+                &lt;directory&gt;target/classes/com/myproject/resources&lt;/directory&gt;
+                &lt;include&gt;*.properties&lt;/include&gt;
+            &lt;/fileset&gt;
+        &lt;/filesets&gt;
         &lt;mode&gt;values&lt;/mode&gt;
     &lt;/configuration&gt;
 

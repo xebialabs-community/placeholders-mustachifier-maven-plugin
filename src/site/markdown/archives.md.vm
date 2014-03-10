@@ -1,0 +1,47 @@
+
+Archives Management
+===================
+
+The plugin offers to manage placeholders properties files not only in folder but also in archive files (zip, tar, ear, war).
+
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <filesets>
+                <fileset>
+                    <directory>target/myproject.war</directory>
+                    <include>classes/**/*.properties</include>
+                </fileset>
+            <filesets>
+        </configuration>
+        <executions>
+            <execution>
+                <phase>install</phase>
+                <goals>
+                    <goal>mustache</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+
+
+
+The property file **before** the plugin execution
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=44
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+
+
+The property file **after** the plugin execution
+
+    param1={{PARAM1}}
+    param2={{param22}}
+    param3={{param3}}
+    param4=http://{{host}}:{{port}}/{{context}}
+
+

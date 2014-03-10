@@ -1,7 +1,7 @@
 package com.xebialabs.maven.mustache;
 
-import java.io.File;
 import java.io.IOException;
+import java.io.Reader;
 import java.io.Writer;
 import java.nio.charset.Charset;
 import java.util.List;
@@ -10,11 +10,14 @@ import java.util.Properties;
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.shared.model.fileset.FileSet;
-import org.apache.maven.shared.model.fileset.util.FileSetManager;
 import com.google.common.collect.Maps;
-import com.google.common.io.Files;
+import com.google.common.io.Closeables;
 
 import com.xebialabs.maven.mustache.utils.SkipCommentsBufferedWriter;
+import com.xebialabs.maven.mustache.utils.TFiles;
+
+import de.schlichtherle.truezip.file.TFile;
+import de.schlichtherle.truezip.fs.FsSyncException;
 
 import static com.google.common.collect.Maps.fromProperties;
 import static com.google.common.collect.Maps.newHashMap;
@@ -113,15 +116,18 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
 
         final Maps.EntryTransformer<String, String, String> transformer = getTransformer();
 
-        FileSetManager fileSetManager = new FileSetManager(getLog());
+        ArchiveFileSetManager fileSetManager = new ArchiveFileSetManager();
 
         for (FileSet fileset : filesets) {
             final String[] includedFiles = fileSetManager.getIncludedFiles(fileset);
+            if (includedFiles.length > 0)
+                updateManifestFile(fileset.getDirectory());
 
             for (String includedFile : includedFiles) {
                 final Properties properties = new Properties();
 
-                File file = new File(fileset.getDirectory(), includedFile);
+                TFile file = new TFile(fileset.getDirectory(), includedFile);
+
                 getLog().debug(" processing " + file);
                 load(properties, file, fileset.getModelEncoding());
 
@@ -130,23 +136,66 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
 
                 save(properties, file, fileset.getModelEncoding());
             }
+            flush(fileset.getDirectory());
         }
     }
 
-    protected void save(final Properties properties, final File file, String encoding) throws MojoExecutionException {
+    private void flush(final String directory) {
+        TFile archive = new TFile(directory);
+        if (!archive.isArchive())
+            return;
+
         try {
-            final Writer bufferedWriter = new SkipCommentsBufferedWriter(Files.newWriter(file, Charset.forName(encoding)));
+            TFiles.flush(archive);
+        } catch (FsSyncException e) {
+            e.printStackTrace();  //To change body of catch statement use File | Settings | File Templates.
+        }
+
+    }
+
+    private void updateManifestFile(final String directory) throws MojoExecutionException {
+        TFile archive = new TFile(directory);
+        if (!archive.isArchive()) {
+            return;
+        }
+
+        getLog().debug("Update the manifest file " + directory);
+        TFile manifest = new TFile(archive, "META-INF/MANIFEST.MF");
+        if (!manifest.exists()) {
+            return;
+        }
+
+        try {
+            final byte[] bytes;
+            bytes = TFiles.toByteArray(manifest);
+            TFiles.fromByteArray(manifest, bytes);
+        } catch (IOException e) {
+            throw new MojoExecutionException("Cannot update manifest file", e);
+        }
+    }
+
+    protected void save(final Properties properties, final TFile file, String encoding) throws MojoExecutionException {
+        Writer out = null;
+        try {
+            out = TFiles.newWriter(file, Charset.forName(encoding));
+            final Writer bufferedWriter = new SkipCommentsBufferedWriter(out);
             properties.store(bufferedWriter, null);
         } catch (Exception e) {
             throw new MojoExecutionException("Cannot write into input file [" + file + "]", e);
+        } finally {
+            Closeables.closeQuietly(out);
         }
     }
 
-    protected void load(final Properties properties, final File file, String encoding) throws MojoExecutionException {
+    protected void load(final Properties properties, final TFile file, String encoding) throws MojoExecutionException {
+        Reader in = null;
         try {
-            properties.load(Files.newReader(file, Charset.forName(encoding)));
+            in = TFiles.newReader(file, Charset.forName(encoding));
+            properties.load(in);
         } catch (IOException e) {
             throw new MojoExecutionException("Cannot read the input file [" + file + "]", e);
+        } finally {
+            Closeables.closeQuietly(in);
         }
     }
 
@@ -156,7 +205,6 @@ public class PropertyFileMustachifierMojo extends AbstractMojo {
 
         final String beforeDelimiter = delimiters.split(" ")[0];
         final String afterDelimiter = delimiters.split(" ")[1];
-
 
         switch (mode) {
             case placeholders:

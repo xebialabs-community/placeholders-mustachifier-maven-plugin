@@ -32,8 +32,9 @@ public class ArchiveFileSetManager {
                                 {"tgz|tar.gz", new TarGZipDriver(IOPoolLocator.SINGLETON)},
                                 {"tbz|tb2|tar.bz2", new TarBZip2Driver(IOPoolLocator.SINGLETON)},
                                 {"jar|war|ear|zip", new ZipDriver(IOPoolLocator.SINGLETON)},
-                        }));
-
+                        }
+                )
+        );
 
         File basedir = new TFile(fileSet.getDirectory());
         DirectoryScanner scanner = new ArchiveScanner();

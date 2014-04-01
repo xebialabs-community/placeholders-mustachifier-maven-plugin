@@ -33,14 +33,12 @@ public class ValueSetterTransformer extends DefaultCollector implements Maps.Ent
             return name.split(valueSeparator)[1];
         else
             return beforeDelimiter + name + afterDelimiter;
-
-
     }
 
     private Mustache.Compiler getCompiler() {
         return Mustache.compiler()
                 .withCollector(this)
-                .withDelims(beforeDelimiter+" "+afterDelimiter)
+                .withDelims(beforeDelimiter + " " + afterDelimiter)
                 .escapeHTML(false)
                 .standardsMode(true);
     }

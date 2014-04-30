@@ -7,7 +7,7 @@ The plugin offers to manage placeholders properties files not only in folder but
 
     <plugin>
         <groupId>com.xebialabs.utils</groupId>
-        <artifactId>mustachifier-maven-plugin</artifactId>
+        <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
             <filesets>

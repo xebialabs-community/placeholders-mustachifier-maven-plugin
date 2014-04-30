@@ -8,9 +8,9 @@
  ------
 
 
-Mustachifier Plugin
+Placeholders Mustachifier Plugin
 
-  Transform a text file full of {{placeholder:value}} into a file with only {{placeholders}} or only values.
+  Transform a properties text file full of {{placeholder:value}} into a file with only {{placeholders}} or only values.
 
   Further information is available on
 

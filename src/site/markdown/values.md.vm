@@ -7,7 +7,7 @@ With this configuration, the plugin replaces any placeholders entries by picking
 
     <plugin>
         <groupId>com.xebialabs.utils</groupId>
-        <artifactId>mustachifier-maven-plugin</artifactId>
+        <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
         <version>${project.version}</version>
         <configuration>
             <filesets>

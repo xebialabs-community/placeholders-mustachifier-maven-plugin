@@ -28,7 +28,7 @@
         <plugins>
             <plugin>
                 <groupId>com.xebialabs.utils</groupId>
-                <artifactId>mustachifier-maven-plugin</artifactId>
+                <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
                 <version>1.0-SNAPSHOT</version>
                 <configuration>
                     <delimiters>{{ }}</delimiters>

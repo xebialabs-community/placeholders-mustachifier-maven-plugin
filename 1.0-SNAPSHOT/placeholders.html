@@ -113,16 +113,7 @@
           
           
           
-                               <ul class="nav pull-right">
-              <li class="dropdown">
-                <a href="#" class="dropdown-toggle" data-toggle="dropdown">External Links <b class="caret"></b></a>
-                <ul class="dropdown-menu">
-                      <li>      <a href="./"  title="XebiaLabs">XebiaLabs</a>
-</li>
-                  </ul>
-              </li>
-            </ul>
-          
+                   
                       </div>
           
         </div>
@@ -133,7 +124,7 @@
           <div id="banner">
         <div class="pull-left">
                                                   <a href="./" id="bannerLeft">
-                                                                                                <img src="images/logo_xebialabs.png"  alt="XebiaLabs"/>
+                                                                                                <img src="images/mustache.png"  alt="XebiaLabs"/>
                 </a>
                       </div>
         <div class="pull-right">              <div id="bannerRight">
@@ -245,7 +236,7 @@
                                   
             <h1>Placeholder Generation</h1>
 
-<p>With this configuration, the plugin replaces any placeholders entries by picking up only the name and generate a placeholder based on the key if needed.</p>
+<p>With this configuration, for each entry of the configuration file, the plugin generates a placeholder based on the key name.</p>
 
 <pre><code>&lt;plugin&gt;
     &lt;groupId&gt;com.xebialabs.utils&lt;/groupId&gt;
@@ -272,10 +263,10 @@
 
 <p>The property file <strong>before</strong> the plugin execution</p>
 
-<pre><code>param1={{PARAM1:45}}
+<pre><code>param1=3000
 param2={{param22}}
 param3=44
-param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+param4.endpoint=http://localhost:8909/services
 </code></pre>
 
 <p>The property file <strong>after</strong> the plugin execution</p>
@@ -283,7 +274,7 @@ param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
 <pre><code>param1={{PARAM1}}
 param2={{param22}}
 param3={{param3}}
-param4=http://{{host}}:{{port}}/{{context}}
+param4.endpoint={{param4.endpoint}}
 </code></pre>
 
                   </div>

@@ -10,7 +10,7 @@
     <meta name="Date-Revision-yyyymmdd" content="20140505" />
     <meta http-equiv="Content-Language" content="en" />
     <title>Mustachifier Plugin - 
-    placeholders-mustachifier:help</title>
+    placeholders-mustachifier:mustache-property-generate</title>
     <link rel="stylesheet" href="./css/apache-maven-fluido-1.3.1.min.css" />
     <link rel="stylesheet" href="./css/site.css" />
     <link rel="stylesheet" href="./css/print.css" media="print" />
@@ -249,24 +249,25 @@
             
   
     <div class="section">
-<h2>placeholders-mustachifier:help<a name="placeholders-mustachifier:help"></a></h2>
+<h2>placeholders-mustachifier:mustache-property-generate<a name="placeholders-mustachifier:mustache-property-generate"></a></h2>
       
 <p><b>Full name</b>:</p>
       
-<p>com.xebialabs.utils:placeholders-mustachifier-maven-plugin:1.0-SNAPSHOT:help</p>
+<p>com.xebialabs.utils:placeholders-mustachifier-maven-plugin:1.0-SNAPSHOT:mustache-property-generate</p>
       
 <p><b>Description</b>:</p>
       
-<div>Display help information on
-placeholders-mustachifier-maven-plugin.<br />
-Call <tt>mvn mustachifier:help -Ddetail=true
--Dgoal=&lt;goal-name&gt;</tt> to display parameter details.</div>
+<div>Mustachify a Java property file.</div>
       
 <p><b>Attributes</b>:</p>
       
 <ul>
         
+<li>Requires a Maven project to be executed.</li>
+        
 <li>The goal is thread-safe and supports parallel builds.</li>
+        
+<li>Binds by default to the lifecycle phase: <tt>compile</tt>.</li>
       </ul>
       
 <div class="section">
@@ -287,48 +288,36 @@ Call <tt>mvn mustachifier:help -Ddetail=true
           
 <tr class="b">
             
-<td><b><a href="#detail">detail</a></b></td>
-            
-<td><tt>boolean</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>If <tt>true</tt>, display all settable properties for each
-goal.<br /><b>Default value is</b>: <tt>false</tt>.</td>
-          </tr>
-          
-<tr class="a">
-            
-<td><b><a href="#goal">goal</a></b></td>
+<td><b><a href="#delimiters">delimiters</a></b></td>
             
 <td><tt>String</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>The name of the goal for which to show help. If unspecified, all
-goals will be displayed.<br /></td>
-          </tr>
-          
-<tr class="b">
-            
-<td><b><a href="#indentSize">indentSize</a></b></td>
-            
-<td><tt>int</tt></td>
-            
-<td><tt>-</tt></td>
-            
-<td>The number of spaces per indentation level, should be positive.<br /><b>Default value is</b>: <tt>2</tt>.</td>
+<td>The delimiter format<br /><b>Default value is</b>: <tt>{{ }}</tt>.</td>
           </tr>
           
 <tr class="a">
             
-<td><b><a href="#lineLength">lineLength</a></b></td>
+<td><b><a href="#filesets">filesets</a></b></td>
             
-<td><tt>int</tt></td>
+<td><tt>List</tt></td>
             
 <td><tt>-</tt></td>
             
-<td>The maximum length of a display line, should be positive.<br /><b>Default value is</b>: <tt>80</tt>.</td>
+<td>FileSet including special entries<br /></td>
+          </tr>
+          
+<tr class="b">
+            
+<td><b><a href="#valueSeparator">valueSeparator</a></b></td>
+            
+<td><tt>String</tt></td>
+            
+<td><tt>-</tt></td>
+            
+<td>The separator format from the placeholder name and the default
+value<br /><b>Default value is</b>: <tt>:</tt>.</td>
           </tr>
         </table>
       </div>
@@ -336,53 +325,40 @@ goals will be displayed.<br /></td>
 <div class="section">
 <h3>Parameter Details<a name="Parameter_Details"></a></h3>
         
-<p><b><a name="detail">detail</a>:</b></p>
+<p><b><a name="delimiters">delimiters</a>:</b></p>
         
-<div>If <tt>true</tt>, display all settable properties for each
-goal.</div>
-        
-<ul>
-          
-<li><b>Type</b>: <tt>boolean</tt></li>
-          
-<li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>Default</b>: <tt>false</tt></li>
-        </ul><hr />
-<p><b><a name="goal">goal</a>:</b></p>
-        
-<div>The name of the goal for which to show help. If unspecified, all
-goals will be displayed.</div>
+<div>The delimiter format</div>
         
 <ul>
           
 <li><b>Type</b>: <tt>java.lang.String</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
+          
+<li><b>Default</b>: <tt>{{ }}</tt></li>
         </ul><hr />
-<p><b><a name="indentSize">indentSize</a>:</b></p>
+<p><b><a name="filesets">filesets</a>:</b></p>
         
-<div>The number of spaces per indentation level, should be positive.</div>
+<div>FileSet including special entries</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>int</tt></li>
+<li><b>Type</b>: <tt>java.util.List</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
-          
-<li><b>Default</b>: <tt>2</tt></li>
         </ul><hr />
-<p><b><a name="lineLength">lineLength</a>:</b></p>
+<p><b><a name="valueSeparator">valueSeparator</a>:</b></p>
         
-<div>The maximum length of a display line, should be positive.</div>
+<div>The separator format from the placeholder name and the default
+value</div>
         
 <ul>
           
-<li><b>Type</b>: <tt>int</tt></li>
+<li><b>Type</b>: <tt>java.lang.String</tt></li>
           
 <li><b>Required</b>: <tt>No</tt></li>
           
-<li><b>Default</b>: <tt>80</tt></li>
+<li><b>Default</b>: <tt>:</tt></li>
         </ul>
       </div>
     </div>

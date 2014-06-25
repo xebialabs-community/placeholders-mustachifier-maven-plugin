@@ -26,11 +26,6 @@
     </custom>
 
     <body>
-        <!--
-        <links>
-            <item name="XebiaLabs" href="http://www.xebialabs.com"/>
-        </links>
-        -->
         <menu name="Overview">
             <item name="Introduction" href="index.html"/>
             <item name="Example: Generate Keys" href="keys.html"/>
@@ -39,8 +34,6 @@
             <item name="Example: Managing Archives" href="archives.html"/>
             <item name="Goals" href="plugin-info.html"/>
         </menu>
-
         <menu ref="reports"/>
-
     </body>
 </project>

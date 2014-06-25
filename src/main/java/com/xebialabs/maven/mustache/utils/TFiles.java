@@ -3,6 +3,7 @@ package com.xebialabs.maven.mustache.utils;
 import java.io.*;
 import java.nio.charset.Charset;
 import com.google.common.io.ByteStreams;
+import com.google.common.io.CharStreams;
 import com.google.common.io.Closeables;
 import com.google.common.io.OutputSupplier;
 
@@ -10,6 +11,8 @@ import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.file.TFileOutputStream;
 import de.schlichtherle.truezip.fs.FsSyncException;
+
+
 
 public class TFiles {
 
@@ -29,6 +32,7 @@ public class TFiles {
         TFile.umount(new TFile(dar));
     }
 
+
     public static byte[] toByteArray(TFile file) throws IOException {
         final TFileInputStream in = new TFileInputStream(file);
         try {
@@ -37,6 +41,11 @@ public class TFiles {
             Closeables.closeQuietly(in);
         }
     }
+
+    public static String toString(TFile file, Charset charset) throws IOException {
+        return new String(toByteArray(file), charset);
+    }
+
 
     public static void fromByteArray(final TFile file, byte[] data) throws IOException {
         final OutputSupplier<TFileOutputStream> to = new OutputSupplier<TFileOutputStream>() {
@@ -51,4 +60,19 @@ public class TFiles {
             Closeables.closeQuietly(to.getOutput());
         }
     }
+
+    public static void write(final String content, final TFile file, final Charset charset) throws IOException {
+        CharStreams.write(content, newWriterSupplier(file, charset, true));
+    }
+
+    private static OutputSupplier<OutputStreamWriter> newWriterSupplier(final TFile file, final Charset charset, final boolean b) {
+        return CharStreams.newWriterSupplier(new OutputSupplier<OutputStream>(){
+            @Override
+            public OutputStream getOutput() throws IOException {
+                return new TFileOutputStream(file,b);
+            }
+        },charset);
+    }
+
+
 }

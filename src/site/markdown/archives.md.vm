@@ -2,8 +2,7 @@
 Archives Management
 ===================
 
-The plugin offers to manage placeholders properties files not only in folder but also in archive files (zip, tar, ear, war).
-
+The plugin offers to manage placeholders in text files not only in a folder but also in archive files (zip, tar, ear, war).
 
     <plugin>
         <groupId>com.xebialabs.utils</groupId>
@@ -21,7 +20,7 @@ The plugin offers to manage placeholders properties files not only in folder but
             <execution>
                 <phase>install</phase>
                 <goals>
-                    <goal>mustache</goal>
+                    <goal>mustache-tokey</goal>      <!-- or mustache-tovalue or mustache-property-generate -->
                 </goals>
             </execution>
         </executions>
@@ -41,7 +40,7 @@ The property file **after** the plugin execution
 
     param1={{PARAM1}}
     param2={{param22}}
-    param3={{param3}}
+    param3=44
     param4=http://{{host}}:{{port}}/{{context}}
 
 

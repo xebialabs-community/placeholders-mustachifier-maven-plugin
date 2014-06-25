@@ -1,8 +1,8 @@
 
 Values Generation
-======================
+=================
 
-With this configuration, the plugin replaces any placeholders entries by picking up only the value.
+With this configuration, the plugin replaces any placeholders entries, eg: {{key:value}}, by picking up only the value.
 
 
     <plugin>
@@ -23,7 +23,7 @@ With this configuration, the plugin replaces any placeholders entries by picking
             <execution>
                 <phase>compile</phase>
                 <goals>
-                    <goal>mustache</goal>
+                    <goal>mustache-tovalue</goal>
                 </goals>
             </execution>
         </executions>

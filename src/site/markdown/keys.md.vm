@@ -1,8 +1,8 @@
 
-Placeholder Generation
-======================
+Keys Generation
+===============
 
-With this configuration, for each entry of the configuration file, the plugin generates a placeholder based on the key name.
+With this configuration, the plugin replaces any placeholders entries, eg {{key:value}}, by picking up only the key.
 
 
     <plugin>
@@ -15,13 +15,15 @@ With this configuration, for each entry of the configuration file, the plugin ge
                     <directory>target/classes/com/myproject/resources</directory>
                     <include>*.properties</include>
                 </fileset>
-            <filesets>
+            </filesets>
+            <mode>values</mode>
         </configuration>
+
         <executions>
             <execution>
                 <phase>compile</phase>
                 <goals>
-                    <goal>mustache-property-generate</goal>
+                    <goal>mustache-tokey</goal>
                 </goals>
             </execution>
         </executions>
@@ -29,21 +31,19 @@ With this configuration, for each entry of the configuration file, the plugin ge
 
 
 
-The property file **before** the plugin execution
+the property file **before** the plugin execution
 
-    param1=3000
+    param1={{PARAM1:45}}
     param2={{param22}}
     param3=44
-    param4.endpoint=http://localhost:8909/services
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
 
 
-The property file **after** the plugin execution
+the property file **after** the plugin execution
 
-    param1={{PARAM1}}
+    param1=45
     param2={{param22}}
-    param3={{param3}}
-    param4.endpoint={{param4.endpoint}}
-
-
+    param3=44
+    param4=http://localhost:8080/default
 
 

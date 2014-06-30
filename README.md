@@ -1,5 +1,5 @@
-mustachifier-maven-plugin
-=========================
+placeholders-mustachifier-maven-plugin
+======================================
 
 Transform a text file full of `{{placeholder:value}}` into a file with only `{{placeholders}}` or only `values`.
 

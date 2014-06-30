@@ -1,10 +1,5 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
-    <parent>
-        <groupId>org.sonatype.oss</groupId>
-        <artifactId>oss-parent</artifactId>
-        <version>7</version>
-    </parent>
 
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.xebialabs.utils</groupId>
@@ -120,6 +115,7 @@
                 </dependencies>
             </plugin>
 
+
             <plugin>
                 <groupId>com.github.github</groupId>
                 <artifactId>site-maven-plugin</artifactId>
@@ -140,8 +136,19 @@
                     </execution>
                 </executions>
             </plugin>
+
+            <plugin>
+                <artifactId>maven-release-plugin</artifactId>
+                <version>2.4.1</version>
+                <configuration>
+                    <useReleaseProfile>false</useReleaseProfile>
+                    <releaseProfiles>release</releaseProfiles>
+                    <autoVersionSubmodules>true</autoVersionSubmodules>
+                </configuration>
+            </plugin>
         </plugins>
     </build>
+
     <dependencies>
         <dependency>
             <groupId>org.apache.maven</groupId>
@@ -243,6 +250,13 @@
         <url>https://github.com/bmoussaud/mustachifier-maven-plugin</url>
         <developerConnection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</developerConnection>
     </scm>
+
+    <distributionManagement>
+        <repository>
+            <id>bintray</id>
+            <url>https://api.bintray.com/maven/bmoussaud/bintray-repo/placeholders-mustachifier-maven-plugin</url>
+        </repository>
+    </distributionManagement>
 
 
 </project>

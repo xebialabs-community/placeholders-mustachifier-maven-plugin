@@ -44,7 +44,7 @@ the property file **after** the plugin execution
     param1=45
     param2={{param22}}
     param3=44
-    param4=http://{{host}}localhost:{{port}}/{{context}}
+    param4=http://{{host}}:{{port}}/{{context}}
     
 
 

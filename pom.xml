@@ -237,7 +237,7 @@
         </plugins>
     </reporting>
 
-    <!-- http://bmoussaud.github.com/mustachifier-maven-plugin/1.0-SNAPSHOT -->
+    <!-- http://bmoussaud.github.io/placeholders-mustachifier-maven-plugin/1.0-SNAPSHOT/ -->
     <scm>
         <connection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</connection>
         <url>https://github.com/bmoussaud/mustachifier-maven-plugin</url>

@@ -8,7 +8,7 @@
     <version>0.2-SNAPSHOT</version>
     <name>Placeholder Mustachifier Maven plugin</name>
     <description>Manage placeholders and values in text file using mustache format.</description>
-    <url>http://www.xebialabs.com</url>
+    <url>https://github.com/bmoussaud/placeholders-mustachifier-maven-plugin</url>
 
     <licenses>
         <license>
@@ -244,8 +244,8 @@
 
     <!-- http://bmoussaud.github.io/placeholders-mustachifier-maven-plugin/0.1-SNAPSHOT/ -->
     <scm>
+        <url>https://github.com/bmoussaud/placeholders-mustachifier-maven-plugin</url>
         <connection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</connection>
-        <url>https://github.com/bmoussaud/mustachifier-maven-plugin</url>
         <developerConnection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</developerConnection>
     </scm>
 

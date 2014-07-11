@@ -38,8 +38,11 @@ public class PropertyFileMustachifierMojo extends AbstractMustachifierMojo {
                 new MustacheGenerate(getBeforeDelimiter(), getAfterDelimiter())));
         properties.putAll(processedEntries);
 
-        StringWriter writer = new StringWriter();
-        properties.list(new PrintWriter(writer));
+        final StringWriter writer = new StringWriter();
+        final PrintWriter printer = new PrintWriter(writer);
+        for (Map.Entry<Object, Object> entry : properties.entrySet()) {
+            printer.println(entry.getKey() + "=" + entry.getValue());
+        }
         return writer.getBuffer().toString();
     }
 

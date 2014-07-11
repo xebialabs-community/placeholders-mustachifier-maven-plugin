@@ -62,7 +62,7 @@ public class TFiles {
     }
 
     public static void write(final String content, final TFile file, final Charset charset) throws IOException {
-        CharStreams.write(content, newWriterSupplier(file, charset, true));
+        CharStreams.write(content, newWriterSupplier(file, charset, false));
     }
 
     private static OutputSupplier<OutputStreamWriter> newWriterSupplier(final TFile file, final Charset charset, final boolean b) {

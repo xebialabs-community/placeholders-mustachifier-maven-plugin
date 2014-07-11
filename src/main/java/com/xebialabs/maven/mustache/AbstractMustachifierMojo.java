@@ -63,7 +63,7 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
 
                 String processed = transform(content);
                 if (getLog().isDebugEnabled())
-                    getLog().debug(" after processing : " + content);
+                    getLog().debug(" after processing : " + processed);
                 save(processed, file, fileset.getModelEncoding());
             }
 

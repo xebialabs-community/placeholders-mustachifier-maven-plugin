@@ -62,7 +62,7 @@ If the xml file has the following content:
 To generate the values
 
     mvn clean package -Pfor-dev
-    
+
 And the content is :
 
     <Connector id="Default JDBC Database">
@@ -85,3 +85,4 @@ And the content is :
         Password {{DB_PASSWORD}}
     </Connector>
 
+i

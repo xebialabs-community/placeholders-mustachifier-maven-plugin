@@ -249,48 +249,48 @@
 <p>The typical use cases is often to generate values for developers and to generate keys when packaging and deploying.
 To solve this issue, it is possible to use the Maven Profiles.</p>
 
-<pre><code>    &lt;build&gt;
-        &lt;plugins&gt;
-            &lt;plugin&gt;
-                &lt;groupId&gt;com.xebialabs.utils&lt;/groupId&gt;
-                &lt;artifactId&gt;placeholders-mustachifier-maven-plugin&lt;/artifactId&gt;
-                &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
-                &lt;configuration&gt;
-                    &lt;delimiters&gt;{{ }}&lt;/delimiters&gt;
-                    &lt;filesets&gt;
-                        &lt;fileset&gt;
-                            &lt;directory&gt;target/classes/META-INF&lt;/directory&gt;
-                            &lt;include&gt;*.xml&lt;/include&gt;
-                        &lt;/fileset&gt;
-                    &lt;/filesets&gt;
-                &lt;/configuration&gt;
-                &lt;executions&gt;
-                    &lt;execution&gt;
-                        &lt;phase&gt;compile&lt;/phase&gt;
-                        &lt;goals&gt;
-                            &lt;goal&gt;${mustache.mode}&lt;/goal&gt;
-                        &lt;/goals&gt;
-                    &lt;/execution&gt;
-                &lt;/executions&gt;
-            &lt;/plugin&gt;
+<pre><code>&lt;build&gt;
+    &lt;plugins&gt;
+        &lt;plugin&gt;
+            &lt;groupId&gt;com.xebialabs.utils&lt;/groupId&gt;
+            &lt;artifactId&gt;placeholders-mustachifier-maven-plugin&lt;/artifactId&gt;
+            &lt;version&gt;0.2-SNAPSHOT&lt;/version&gt;
+            &lt;configuration&gt;
+                &lt;delimiters&gt;{{ }}&lt;/delimiters&gt;
+                &lt;filesets&gt;
+                    &lt;fileset&gt;
+                        &lt;directory&gt;target/classes/META-INF&lt;/directory&gt;
+                        &lt;include&gt;*.xml&lt;/include&gt;
+                    &lt;/fileset&gt;
+                &lt;/filesets&gt;
+            &lt;/configuration&gt;
+            &lt;executions&gt;
+                &lt;execution&gt;
+                    &lt;phase&gt;compile&lt;/phase&gt;
+                    &lt;goals&gt;
+                        &lt;goal&gt;${mustache.mode}&lt;/goal&gt;
+                    &lt;/goals&gt;
+                &lt;/execution&gt;
+            &lt;/executions&gt;
+        &lt;/plugin&gt;
 
-        &lt;/plugins&gt;
-    &lt;/build&gt;
+    &lt;/plugins&gt;
+&lt;/build&gt;
 
-    &lt;profiles&gt;
-        &lt;profile&gt;
-            &lt;id&gt;for-dev&lt;/id&gt;
-            &lt;properties&gt;
-                &lt;mustache.mode&gt;mustache-tovalue&lt;/mustache.mode&gt;
-            &lt;/properties&gt;
-        &lt;/profile&gt;
-        &lt;profile&gt;
-            &lt;id&gt;for-xld&lt;/id&gt;
-            &lt;properties&gt;
-                &lt;mustache.mode&gt;mustache-tokey&lt;/mustache.mode&gt;
-            &lt;/properties&gt;
-        &lt;/profile&gt;
-    &lt;/profiles&gt;
+&lt;profiles&gt;
+    &lt;profile&gt;
+        &lt;id&gt;for-dev&lt;/id&gt;
+        &lt;properties&gt;
+            &lt;mustache.mode&gt;mustache-tovalue&lt;/mustache.mode&gt;
+        &lt;/properties&gt;
+    &lt;/profile&gt;
+    &lt;profile&gt;
+        &lt;id&gt;for-xld&lt;/id&gt;
+        &lt;properties&gt;
+            &lt;mustache.mode&gt;mustache-tokey&lt;/mustache.mode&gt;
+        &lt;/properties&gt;
+    &lt;/profile&gt;
+&lt;/profiles&gt;
 </code></pre>
 
 <p>Depending of the activated profile, the plugin will generate values or keys

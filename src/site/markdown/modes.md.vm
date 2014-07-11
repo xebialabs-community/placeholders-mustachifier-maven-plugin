@@ -1,0 +1,87 @@
+
+Switching between modes
+=======================
+
+The typical use cases is often to generate values for developers and to generate keys when packaging and deploying.
+To solve this issue, it is possible to use the Maven Profiles.
+
+        <build>
+            <plugins>
+                <plugin>
+                    <groupId>com.xebialabs.utils</groupId>
+                    <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
+                    <version>0.2-SNAPSHOT</version>
+                    <configuration>
+                        <delimiters>{{ }}</delimiters>
+                        <filesets>
+                            <fileset>
+                                <directory>target/classes/META-INF</directory>
+                                <include>*.xml</include>
+                            </fileset>
+                        </filesets>
+                    </configuration>
+                    <executions>
+                        <execution>
+                            <phase>compile</phase>
+                            <goals>
+                                <goal>${mustache.mode}</goal>
+                            </goals>
+                        </execution>
+                    </executions>
+                </plugin>
+
+            </plugins>
+        </build>
+
+        <profiles>
+            <profile>
+                <id>for-dev</id>
+                <properties>
+                    <mustache.mode>mustache-tovalue</mustache.mode>
+                </properties>
+            </profile>
+            <profile>
+                <id>for-xld</id>
+                <properties>
+                    <mustache.mode>mustache-tokey</mustache.mode>
+                </properties>
+            </profile>
+        </profiles>
+
+
+Depending of the activated profile, the plugin will generate values or keys
+If the xml file has the following content:
+
+    <Connector id="Default JDBC Database">
+        JdbcDriver org.postgresql.Driver
+        JdbcUrl jdbc:postgresql://localhost/mydb
+        UserName {{DB_USERNAME:scott}}
+        Password {{DB_PASSWORD:tiger}}
+    </Connector>
+
+To generate the values
+
+    mvn clean package -Pfor-dev
+    
+And the content is :
+
+    <Connector id="Default JDBC Database">
+        JdbcDriver org.postgresql.Driver
+        JdbcUrl jdbc:postgresql://localhost/mydb
+        UserName scott
+        Password tiger
+    </Connector>
+
+To generate the keys
+
+    mvn clean package -Pfor-xld
+
+And the content is :
+
+    <Connector id="Default JDBC Database">
+        JdbcDriver org.postgresql.Driver
+        JdbcUrl jdbc:postgresql://localhost/mydb
+        UserName {{DB_USERNAME}}
+        Password {{DB_PASSWORD}}
+    </Connector>
+

@@ -32,6 +32,7 @@
             <item name="Example: Generate Values" href="values.html"/>
             <item name="Example: Generate Placeholders" href="placeholders.html"/>
             <item name="Example: Managing Archives" href="archives.html"/>
+            <item name="Example: Switching between modes" href="modes.html"/>
             <item name="Goals" href="plugin-info.html"/>
         </menu>
         <menu ref="reports"/>

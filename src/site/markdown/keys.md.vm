@@ -15,10 +15,8 @@ With this configuration, the plugin replaces any placeholders entries, eg {{key:
                     <directory>target/classes/com/myproject/resources</directory>
                     <include>*.properties</include>
                 </fileset>
-            </filesets>
-            <mode>values</mode>
+            </filesets>           
         </configuration>
-
         <executions>
             <execution>
                 <phase>compile</phase>

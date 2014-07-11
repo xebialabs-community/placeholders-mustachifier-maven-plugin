@@ -25,6 +25,20 @@ The plugin offers to manage placeholders in text files not only in a folder but 
             </execution>
         </executions>
     </plugin>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>bintray</id>
+             <url>http://dl.bintray.com/bmoussaud/maven</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+  </pluginRepositories>
+  
+
 
 
 

@@ -1,0 +1,71 @@
+
+Values Generation
+=================
+
+With this configuration, the plugin replaces any placeholders entries, eg: {{key:value}} or simple {{key}}, by a value provided by a Java Property file.
+
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <filesets>
+                <fileset>
+                    <directory>target/classes/com/myproject/resources</directory>
+                    <include>*.properties</include>
+                </fileset>
+                <valueProvider>
+                    <file>
+                        <path>~/myproject/local-values.properties</path>
+                    </file>               
+                </valueProvider>
+            </filesets>            
+        </configuration>
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>mustache-tovalue</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>bintray</id>
+             <url>http://dl.bintray.com/bmoussaud/maven</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+  
+
+the property file **before** the plugin execution
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=45
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+    param5={{param5}}
+   
+using this property file as values:
+
+    PARAM1=45
+    param5=benoit
+    host=www.xebialabs.com
+    port=9090
+    context=xldeploy
+
+the property file **after** the plugin execution
+
+    param1=45
+    param2={{param22}}
+    param3=45
+    param4=http://www.xebialabs.com:9090/xldeploy
+    param5=benoit
+

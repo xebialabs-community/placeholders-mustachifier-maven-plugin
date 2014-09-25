@@ -1,0 +1,72 @@
+
+Values Generation
+=================
+
+With this configuration, the plugin replaces any placeholders entries, eg: {{key:value}} or simple {{key}}, by a value provided by an effective dictionary provided by an [XL Deploy server](http://xebialabs.com/products/xl-deploy/).
+
+The maven plugin is using the [XL Deploy server's REST API](http://docs.xebialabs.com/releases/4.5/xl-deploy/rest-api/com.xebialabs.deployit.engine.api.DeploymentService.html#/deployment/dictionary:GET) that allows to get the effective dictionary based on an environment.  
+
+Why using the effective dictionary and not a dictionary ? The effective dictionary is the combination of the dictionaries associated to an environment, resolving the overide of the key or computing all the values based on other keys.
+
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <configuration>
+            <filesets>
+                <fileset>
+                    <directory>target/classes/com/myproject/resources</directory>
+                    <include>*.properties</include>
+                </fileset>
+                <valueProvider>
+                    <xldeploy>
+                        <username>dev</username>
+                        <password>dev1234</password>
+                        <url>http://localhost:4516</url>
+                        <context>deployit</context>
+                        <environment>Environments/Dev/Tomcat-Dev</environment>
+                    </xldeploy>               
+                </valueProvider>
+            </filesets>            
+        </configuration>
+        <executions>
+            <execution>
+                <phase>compile</phase>
+                <goals>
+                    <goal>mustache-tovalue</goal>
+                </goals>
+            </execution>
+        </executions>
+    </plugin>
+    <pluginRepositories>
+        <pluginRepository>
+            <id>bintray</id>
+             <url>http://dl.bintray.com/bmoussaud/maven</url>
+            <releases>
+                <enabled>true</enabled>
+            </releases>
+            <snapshots>
+                <enabled>false</enabled>
+            </snapshots>
+        </pluginRepository>
+    </pluginRepositories>
+  
+
+the property file **before** the plugin execution
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=45
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+    param5={{param5}}
+   
+using the effective dictionary based on the environment Environments/Dev/Tomcat-Dev
+
+the property file **after** the plugin execution
+
+    param1=45
+    param2={{param22}}
+    param3=45
+    param4=http://www.xebialabs.com:9090/xldeploy
+    param5=benoit
+

@@ -30,6 +30,8 @@
             <item name="Introduction" href="index.html"/>
             <item name="Example: Generate Keys" href="keys.html"/>
             <item name="Example: Generate Values" href="values.html"/>
+            <item name="Example: Generate Values (Properties)" href="values-with-properties.html"/>
+            <item name="Example: Generate Values (XLDeploy)" href="values-with-xldeploy.html"/>
             <item name="Example: Generate Placeholders" href="placeholders.html"/>
             <item name="Example: Managing Archives" href="archives.html"/>
             <item name="Example: Switching between modes" href="modes.html"/>

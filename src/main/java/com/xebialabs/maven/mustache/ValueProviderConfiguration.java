@@ -16,12 +16,12 @@ public class ValueProviderConfiguration {
 
         if (file == null && xldeploy == null)
             return new DefaultValueProvider();
-        if (file != null && xldeploy !=null)
+        if (file != null && xldeploy != null)
             throw new RuntimeException("You should configure only one value provider (file or xldeploy)");
 
-        if (file != null )
+        if (file != null)
             return file;
-        if (xldeploy !=null)
+        if (xldeploy != null)
             return xldeploy;
 
         throw new RuntimeException("Not possible to reach this statement");

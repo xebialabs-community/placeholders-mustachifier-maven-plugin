@@ -1,7 +1,5 @@
 package com.xebialabs.maven.mustache;
 
-import com.xebialabs.maven.mustache.provider.DefaultValueProvider;
-import com.xebialabs.maven.mustache.provider.ValueProvider;
 import com.xebialabs.maven.mustache.transformer.MustacheToValue;
 
 

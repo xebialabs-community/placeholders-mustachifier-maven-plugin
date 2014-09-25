@@ -13,7 +13,6 @@ import de.schlichtherle.truezip.file.TFileOutputStream;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
 
-
 public class TFiles {
 
     public static BufferedReader newReader(TFile file, Charset charset)
@@ -66,12 +65,12 @@ public class TFiles {
     }
 
     private static OutputSupplier<OutputStreamWriter> newWriterSupplier(final TFile file, final Charset charset, final boolean b) {
-        return CharStreams.newWriterSupplier(new OutputSupplier<OutputStream>(){
+        return CharStreams.newWriterSupplier(new OutputSupplier<OutputStream>() {
             @Override
             public OutputStream getOutput() throws IOException {
-                return new TFileOutputStream(file,b);
+                return new TFileOutputStream(file, b);
             }
-        },charset);
+        }, charset);
     }
 
 

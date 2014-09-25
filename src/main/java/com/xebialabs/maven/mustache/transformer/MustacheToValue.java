@@ -2,18 +2,23 @@ package com.xebialabs.maven.mustache.transformer;
 
 import com.samskivert.mustache.Mustache;
 
+import com.xebialabs.maven.mustache.provider.ValueProvider;
+
 public class MustacheToValue extends DefaultMustacheCollector implements Mustache.VariableFetcher {
 
-    public MustacheToValue(final String beforeDelimiter, final String afterDelimiter, final String valueSeparator) {
+    final ValueProvider valueProvider;
+
+    public MustacheToValue(final String beforeDelimiter, final String afterDelimiter, final String valueSeparator, final ValueProvider valueProvider) {
         super(afterDelimiter, beforeDelimiter, valueSeparator);
+        this.valueProvider = valueProvider;
     }
 
     @Override
     public Object get(final Object ctx, final String name) throws Exception {
         if (name.contains(valueSeparator))
-            return name.split(valueSeparator)[1];
+            return valueProvider.getValue(name.split(valueSeparator)[0], name.split(valueSeparator)[1]);
         else
-            return beforeDelimiter + name + afterDelimiter;
+            return valueProvider.getValue(name, beforeDelimiter + name + afterDelimiter);
     }
 
 }

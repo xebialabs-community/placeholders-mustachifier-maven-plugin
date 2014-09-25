@@ -1,0 +1,22 @@
+<map>
+    <entry>
+        <string>PARAM1</string>
+        <string>45</string>
+    </entry>
+    <entry>
+        <string>param5</string>
+        <string>benoit</string>
+    </entry>
+    <entry>
+        <string>host</string>
+        <string>www.xebialabs.com</string>
+    </entry>
+    <entry>
+        <string>port</string>
+        <string>9090</string>
+    </entry>
+    <entry>
+        <string>context</string>
+        <string>xldeploy</string>
+    </entry>
+</map>

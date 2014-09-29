@@ -14,13 +14,13 @@ With this configuration, the plugin replaces any placeholders entries, eg: {{key
                 <fileset>
                     <directory>target/classes/com/myproject/resources</directory>
                     <include>*.properties</include>
-                </fileset>
-                <valueProvider>
-                    <file>
-                        <path>~/myproject/local-values.properties</path>
-                    </file>               
-                </valueProvider>
-            </filesets>            
+                </fileset>                
+            </filesets>   
+            <valueProvider>
+                <file>
+                    <path>~/myproject/local-values.properties</path>
+                </file>               
+            </valueProvider>
         </configuration>
         <executions>
             <execution>

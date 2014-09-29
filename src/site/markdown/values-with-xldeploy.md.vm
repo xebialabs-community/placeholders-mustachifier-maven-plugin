@@ -17,17 +17,17 @@ Why using the effective dictionary and not a dictionary ? The effective dictiona
                 <fileset>
                     <directory>target/classes/com/myproject/resources</directory>
                     <include>*.properties</include>
-                </fileset>
-                <valueProvider>
-                    <xldeploy>
-                        <username>dev</username>
-                        <password>dev1234</password>
-                        <url>http://localhost:4516</url>
-                        <context>deployit</context>
-                        <environment>Environments/Dev/Tomcat-Dev</environment>
-                    </xldeploy>               
-                </valueProvider>
-            </filesets>            
+                </fileset>                
+            </filesets>   
+            <valueProvider>
+                <xldeploy>
+                    <username>dev</username>
+                    <password>dev1234</password>
+                    <url>http://localhost:4516</url>
+                    <context>deployit</context>
+                    <environment>Environments/Dev/Tomcat-Dev</environment>
+                </xldeploy>               
+            </valueProvider>                             
         </configuration>
         <executions>
             <execution>

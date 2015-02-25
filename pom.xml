@@ -173,13 +173,14 @@
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-file</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
         </dependency>
 
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-samples</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -232,7 +233,17 @@
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-driver-zip</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
+        </dependency>
+        <dependency>
+            <groupId>de.schlichtherle.truezip</groupId>
+            <artifactId>truezip-driver-tar</artifactId>
+            <version>7.7.8</version>
+        </dependency>
+        <dependency>
+            <groupId>de.schlichtherle.truezip</groupId>
+            <artifactId>truezip-driver-tzp</artifactId>
+            <version>7.7.8</version>
         </dependency>
 
         <dependency>

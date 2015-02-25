@@ -79,7 +79,7 @@ public class MustachifierToValueMojoTest extends MustachifierMojoTest {
         mojo.execute();
 
         final Properties properties = getPropertiesFromFile(targetFile, "withplaceholders/config.properties", true);
-        assertProperties(properties);
+        assertPropertiesInJar(properties);
     }
 
     @Test
@@ -95,15 +95,25 @@ public class MustachifierToValueMojoTest extends MustachifierMojoTest {
         mojo.execute();
 
         final Properties properties = getPropertiesFromFile(targetFile, "config.properties", false);
-        assertProperties(properties);
+        assertPropertiesInJar(properties);
     }
 
-    private void assertProperties(final Properties properties) {
+    private void assertPropertiesInJar(final Properties properties) {
         assertEquals(4, properties.size());
         assertEquals("45", properties.get("param1"));
         assertEquals("{{param22}}", properties.get("param2"));
         assertEquals("45", properties.get("param3"));
         assertEquals("http://localhost:8080/default", properties.get("param4"));
+    }
+
+    private void assertProperties(final Properties properties) {
+        assertEquals(6, properties.size());
+        assertEquals("45", properties.get("param1"));
+        assertEquals("{{param22}}", properties.get("param2"));
+        assertEquals("45", properties.get("param3"));
+        assertEquals("http://localhost:8080/default", properties.get("param4"));
+        assertEquals("45%foo", properties.get("param5"));
+        assertEquals("", properties.get("param6"));
     }
 
 

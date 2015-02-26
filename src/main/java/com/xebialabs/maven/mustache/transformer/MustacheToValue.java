@@ -15,8 +15,10 @@ public class MustacheToValue extends DefaultMustacheCollector implements Mustach
 
     @Override
     public Object get(final Object ctx, final String name) throws Exception {
-        if (name.contains(valueSeparator))
-            return valueProvider.getValue(name.split(valueSeparator)[0], name.split(valueSeparator)[1]);
+        if (name.contains(valueSeparator)) {
+            final int index = name.indexOf(valueSeparator);
+            return valueProvider.getValue(name.split(valueSeparator)[0], index == name.length() - 1 ? "" : name.substring(index + 1));
+        }
         else
             return valueProvider.getValue(name, beforeDelimiter + name + afterDelimiter);
     }

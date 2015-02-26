@@ -10,6 +10,7 @@ import com.google.common.io.OutputSupplier;
 import de.schlichtherle.truezip.file.TFile;
 import de.schlichtherle.truezip.file.TFileInputStream;
 import de.schlichtherle.truezip.file.TFileOutputStream;
+import de.schlichtherle.truezip.file.TVFS;
 import de.schlichtherle.truezip.fs.FsSyncException;
 
 
@@ -28,7 +29,7 @@ public class TFiles {
     }
 
     public static void flush(File dar) throws FsSyncException {
-        TFile.umount(new TFile(dar));
+        TVFS.umount(new TFile(dar));
     }
 
 

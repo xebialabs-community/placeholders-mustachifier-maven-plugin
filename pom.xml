@@ -57,7 +57,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-source-plugin</artifactId>
-                <version>2.1.2</version>
+                <version>2.4</version>
                 <executions>
                     <execution>
                         <id>attach-sources</id>
@@ -70,13 +70,14 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.5</version>
+                <version>2.10.1</version>
                 <configuration>
                     <quiet>true</quiet>
                     <nonavbar>true</nonavbar>
                     <notree>true</notree>
                     <nocomment>true</nocomment>
                     <nohelp>true</nohelp>
+                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
@@ -172,13 +173,14 @@
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-file</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
         </dependency>
 
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-samples</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
+            <scope>test</scope>
         </dependency>
 
         <dependency>
@@ -231,7 +233,17 @@
         <dependency>
             <groupId>de.schlichtherle.truezip</groupId>
             <artifactId>truezip-driver-zip</artifactId>
-            <version>7.3.4</version>
+            <version>7.7.8</version>
+        </dependency>
+        <dependency>
+            <groupId>de.schlichtherle.truezip</groupId>
+            <artifactId>truezip-driver-tar</artifactId>
+            <version>7.7.8</version>
+        </dependency>
+        <dependency>
+            <groupId>de.schlichtherle.truezip</groupId>
+            <artifactId>truezip-driver-tzp</artifactId>
+            <version>7.7.8</version>
         </dependency>
 
         <dependency>

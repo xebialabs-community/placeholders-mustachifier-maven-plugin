@@ -7,4 +7,11 @@ More information here: http://bmoussaud.github.io/placeholders-mustachifier-mave
 
 The test uses a nice tools called `Restito` https://github.com/mkotsur/restito to mock the REST calls 
 
+Docker
+------
+
+The docker folder contains two images to build the plugin using java7 or
+java8
+
+
 

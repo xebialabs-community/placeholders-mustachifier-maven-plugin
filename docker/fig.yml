@@ -1,0 +1,5 @@
+java7:
+  build: java7
+java8:
+  build: java8
+

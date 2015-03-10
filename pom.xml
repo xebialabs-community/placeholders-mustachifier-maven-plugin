@@ -298,5 +298,17 @@
         </repository>
     </distributionManagement>
 
+    <profiles>
+        <profile>
+            <id>doclint-java8-disable</id>
+            <activation>
+                <jdk>[1.8,)</jdk>
+            </activation>
+            <properties>
+                <disableLint>-Xdoclint:none</disableLint>
+            </properties>
+        </profile>
+    </profiles>
+
 
 </project>

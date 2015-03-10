@@ -67,7 +67,7 @@
                     </execution>
                 </executions>
             </plugin>
-            <!--
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
@@ -78,7 +78,6 @@
                     <notree>true</notree>
                     <nocomment>true</nocomment>
                     <nohelp>true</nohelp>
-                    <additionalparam>-Xdoclint:none</additionalparam>
                 </configuration>
                 <executions>
                     <execution>
@@ -89,7 +88,7 @@
                     </execution>
                 </executions>
             </plugin>
-            -->
+
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-gpg-plugin</artifactId>

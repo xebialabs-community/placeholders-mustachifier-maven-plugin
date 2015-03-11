@@ -149,6 +149,19 @@
                 </executions>
             </plugin>
 
+            <!-- Nexus Staging Maven Plugin for Deployment and Release into Sonatype OSSRH -->
+            <plugin>
+                <groupId>org.sonatype.plugins</groupId>
+                <artifactId>nexus-staging-maven-plugin</artifactId>
+                <version>1.6.5</version>
+                <extensions>true</extensions>
+                <configuration>
+                    <serverId>ossrh</serverId>
+                    <nexusUrl>https://oss.sonatype.org/</nexusUrl>
+                    <autoReleaseAfterClose>true</autoReleaseAfterClose>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
@@ -292,10 +305,20 @@
     </scm>
 
     <distributionManagement>
+        <snapshotRepository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/content/repositories/snapshots</url>
+        </snapshotRepository>
+        <repository>
+            <id>ossrh</id>
+            <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
+        </repository>
+        <!--
         <repository>
             <id>bintray</id>
             <url>https://api.bintray.com/maven/bmoussaud/maven/placeholders-mustachifier-maven-plugin</url>
         </repository>
+        -->
     </distributionManagement>
 
     <profiles>

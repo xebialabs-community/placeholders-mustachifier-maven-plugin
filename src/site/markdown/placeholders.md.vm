@@ -26,19 +26,7 @@ With this configuration, for each entry of the configuration file, the plugin ge
             </execution>
         </executions>
     </plugin>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bintray</id>
-             <url>http://dl.bintray.com/bmoussaud/maven</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-  
+
 
 
 

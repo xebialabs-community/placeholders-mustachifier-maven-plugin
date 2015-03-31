@@ -26,20 +26,6 @@ With this configuration, the plugin replaces any placeholders entries, eg {{key:
             </execution>
         </executions>
     </plugin>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bintray</id>
-             <url>http://dl.bintray.com/bmoussaud/maven</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-  </pluginRepositories>
-  
-
 
 
 the property file **before** the plugin execution

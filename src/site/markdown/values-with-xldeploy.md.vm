@@ -38,19 +38,7 @@ Why using the effective dictionary and not a dictionary ? The effective dictiona
             </execution>
         </executions>
     </plugin>
-    <pluginRepositories>
-        <pluginRepository>
-            <id>bintray</id>
-             <url>http://dl.bintray.com/bmoussaud/maven</url>
-            <releases>
-                <enabled>true</enabled>
-            </releases>
-            <snapshots>
-                <enabled>false</enabled>
-            </snapshots>
-        </pluginRepository>
-    </pluginRepositories>
-  
+
 
 the property file **before** the plugin execution
 

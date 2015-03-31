@@ -8,7 +8,7 @@
     <version>0.5-SNAPSHOT</version>
     <name>Placeholder Mustachifier Maven plugin</name>
     <description>Manage placeholders and values in text file using mustache format.</description>
-    <url>https://github.com/bmoussaud/placeholders-mustachifier-maven-plugin</url>
+    <url>https://github.com/xebialabs-community/placeholders-mustachifier-maven-plugin</url>
 
     <licenses>
         <license>
@@ -300,11 +300,11 @@
         </plugins>
     </reporting>
 
-    <!-- http://bmoussaud.github.io/placeholders-mustachifier-maven-plugin/0.4-SNAPSHOT/ -->
+    <!-- http://xebialabs-community.github.io/placeholders-mustachifier-maven-plugin/0.4-SNAPSHOT/ -->
     <scm>
-        <url>https://github.com/bmoussaud/placeholders-mustachifier-maven-plugin</url>
-        <connection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</connection>
-        <developerConnection>scm:git:git@github.com:bmoussaud/mustachifier-maven-plugin.git</developerConnection>
+        <url>https://github.com/xebialabs-community/placeholders-mustachifier-maven-plugin</url>
+        <connection>scm:git:git@github.com:xebialabs-community/mustachifier-maven-plugin.git</connection>
+        <developerConnection>scm:git:git@github.com:xebialabs-community/mustachifier-maven-plugin.git</developerConnection>
     </scm>
 
     <distributionManagement>
@@ -316,12 +316,6 @@
             <id>ossrh</id>
             <url>https://oss.sonatype.org/service/local/staging/deploy/maven2/</url>
         </repository>
-        <!--
-        <repository>
-            <id>bintray</id>
-            <url>https://api.bintray.com/maven/bmoussaud/maven/placeholders-mustachifier-maven-plugin</url>
-        </repository>
-        -->
     </distributionManagement>
 
     <profiles>

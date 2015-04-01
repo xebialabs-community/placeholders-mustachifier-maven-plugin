@@ -91,7 +91,7 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
         TFile input = new TFile(aFile.getSourceFile());
         TFile output = new TFile(aFile.getTargetFileName());
         try {
-            String content = load(input, aFile.getModelEncoding());
+            String content = TFiles.toString(input, Charset.forName(aFile.getModelEncoding()));
             if (aFile.isFilterOnlyMustacheProperties()) {
                 content = filterMustacheOnly(content);
             }
@@ -101,6 +101,8 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
             save(processed, output, aFile.getModelEncoding());
         } catch (MojoExecutionException e) {
             getLog().error("Failed to read input file: "+input, e);
+        } catch (IOException e) {
+            getLog().warn("Failed to read input file: "+input);
         }
     }
 

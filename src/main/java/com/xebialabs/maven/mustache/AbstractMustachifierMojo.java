@@ -1,9 +1,13 @@
 package com.xebialabs.maven.mustache;
 
+import java.io.File;
 import java.io.IOException;
 import java.io.Writer;
 import java.nio.charset.Charset;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.regex.Pattern;
+
 import org.apache.maven.plugin.AbstractMojo;
 import org.apache.maven.plugin.MojoExecutionException;
 import org.apache.maven.plugin.MojoFailureException;
@@ -24,13 +28,22 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
      *
      * @parameter
      */
-    protected List<FileSet> filesets;
+    protected List<FileSet> filesets = new ArrayList<FileSet>();
+
+    /**
+     * List of SingleFile to be scanned. Must be text file, archive not supported.
+     *
+     * @parameter
+     */
+    protected List<SingleFile> files = new ArrayList<SingleFile>();
+
     /**
      * The delimiter format
      *
      * @parameter default-value="{{ }}"
      */
     protected String delimiters;
+
     /**
      * The separator format from the placeholder name and the default value
      *
@@ -69,6 +82,37 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
 
             flush(fileset.getDirectory());
         }
+        for (SingleFile sFile: files) {
+            saveSingleFile(sFile);
+        }
+    }
+
+    final void saveSingleFile(final SingleFile aFile) {
+        TFile input = new TFile(aFile.getSourceFile());
+        TFile output = new TFile(aFile.getTargetFileName());
+        try {
+            String content = load(input, aFile.getModelEncoding());
+            if (aFile.isFilterOnlyMustacheProperties()) {
+                content = filterMustacheOnly(content);
+            }
+            final String processed = transform(content);
+            File parent = new File(output.getParent());
+            parent.mkdirs();
+            save(processed, output, aFile.getModelEncoding());
+        } catch (MojoExecutionException e) {
+            getLog().error("Failed to read input file: "+input, e);
+        }
+    }
+
+    final String filterMustacheOnly(final String aContent) {
+        StringBuilder builder = new StringBuilder(1024);
+        final String lineBreak = System.getProperty("line.separator");
+        final String[] lines = aContent.split(lineBreak);
+        for (String line: lines) {
+            if (line.contains(getBeforeDelimiter()))
+                builder.append(line).append(lineBreak);
+        }
+        return builder.toString();
     }
 
     protected abstract String transform(final String content);

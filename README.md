@@ -14,4 +14,12 @@ The docker folder contains two images to build the plugin using java7 or
 java8
 
 
+Install Locally
+------
+
+By default jar is signed after packaging and before installation. To skip that (testing):
+```
+mvn -Dgpg.skip install
+```
+
 

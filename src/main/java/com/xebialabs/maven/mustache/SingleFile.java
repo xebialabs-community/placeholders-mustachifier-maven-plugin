@@ -40,6 +40,17 @@ public class SingleFile {
         return filterOnlyMustacheProperties;
     }
 
+    /**
+     * Call this method when to want to retains only properties that contains mustache values.
+     * It can be useful when you want to
+     * <ul>
+     *     <li>Want to embark 'unmustachified' properties into a jarfile</li>
+     *     <li>And expose only 'mustachifed' properties into an external file (I means a file not into your classpath).
+     *     Use case is you don't want to show all properties to ops guys.</li>
+     * </ul>
+     *
+     * @param aFilterOnlyMustacheProperties
+     */
     public void setFilterOnlyMustacheProperties(final boolean aFilterOnlyMustacheProperties) {
         filterOnlyMustacheProperties = aFilterOnlyMustacheProperties;
     }

@@ -100,7 +100,7 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
             parent.mkdirs();
             save(processed, output, aFile.getModelEncoding());
         } catch (MojoExecutionException e) {
-            getLog().error("Failed to read input file: "+input, e);
+            getLog().error("Failed to write output file: "+input, e);
         } catch (IOException e) {
             getLog().warn("Failed to read input file: "+input);
         }

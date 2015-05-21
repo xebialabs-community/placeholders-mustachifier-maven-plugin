@@ -1,0 +1,60 @@
+
+Values Generation
+=================
+
+With this configuration, the plugin:
+
+   * Select a standalone placeholders File.
+   * replaces any placeholders entries, eg: {{key:value}} or simple {{key}}, by a value provided by a Java Property file.
+   * Optionaly retains only value that contains {{key}}
+
+```
+    <plugin>
+        <groupId>com.xebialabs.utils</groupId>
+        <artifactId>placeholders-mustachifier-maven-plugin</artifactId>
+        <version>${project.version}</version>
+        <executions>
+            <execution>
+                <id>remove-mustache-for-testing</id>
+                <goals>
+                    <goal>mustache-tovalue</goal>
+                </goals>
+                <phase>generate-test-resources</phase>
+                <configuration>
+                    <files>
+                        <singlefile>
+                            <sourceFile>${basedir}/.../config.properties</sourceFile>
+                            <targetFileName>${project.build.testOutputDirectory}/limited-config.properties</targetFileName>
+                            <filterOnlyMustacheProperties>true</filterOnlyMustacheProperties>
+                        </singlefile>
+                    </files>
+                </configuration>
+            </execution>
+        </executions>
+    </plugin>
+```
+
+  
+the property file **before** the plugin execution (config.properties))
+
+    param1={{PARAM1:45}}
+    param2={{param22}}
+    param3=45
+    param4=http://{{host:localhost}}:{{port:8080}}/{{context:default}}
+    param5={{param5}}
+   
+using this property file as values:
+
+    PARAM1=45
+    param5=benoit
+    host=www.xebialabs.com
+    port=9090
+    context=xldeploy
+
+the property file **after** the plugin execution ()limited-config.properties)
+
+    param1=45
+    param2={{param22}}
+    param4=http://www.xebialabs.com:9090/xldeploy
+    param5=benoit
+

@@ -10,12 +10,6 @@
     <description>Manage placeholders and values in text file using mustache format.</description>
     <url>https://github.com/xebialabs-community/placeholders-mustachifier-maven-plugin</url>
 
-    <parent>
-        <groupId>sgcib.ctt.cascade</groupId>
-        <artifactId>cascade-root</artifactId>
-        <version>2.0.0-SNAPSHOT</version>
-    </parent>
-
     <licenses>
         <license>
             <name>The Apache Software License, Version 2.0</name>

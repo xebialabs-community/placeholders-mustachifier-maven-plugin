@@ -32,6 +32,8 @@
             <item name="Example: Generate Values" href="values.html"/>
             <item name="Example: Generate Values (Properties)" href="values-with-properties.html"/>
             <item name="Example: Generate Values (XLDeploy)" href="values-with-xldeploy.html"/>
+            <item name="Example: Filter Values and Change target filename" href="values-with-filtering-and-changing-target.html"/>
+
             <item name="Example: Generate Placeholders" href="placeholders.html"/>
             <item name="Example: Managing Archives" href="archives.html"/>
             <item name="Example: Switching between modes" href="modes.html"/>

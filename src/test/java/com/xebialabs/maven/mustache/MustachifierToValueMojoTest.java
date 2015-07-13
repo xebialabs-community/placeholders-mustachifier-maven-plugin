@@ -106,7 +106,7 @@ public class MustachifierToValueMojoTest extends MustachifierMojoTest {
         assertEquals("http://localhost:8080/default", properties.get("param4"));
     }
 
-    private void assertProperties(final Properties properties) {
+    final static void assertProperties(final Properties properties) {
         assertEquals(6, properties.size());
         assertEquals("45", properties.get("param1"));
         assertEquals("{{param22}}", properties.get("param2"));

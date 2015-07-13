@@ -29,7 +29,7 @@ public abstract class MustachifierMojoTest extends AbstractMojoTestCase {
         super.tearDown();
     }
 
-    protected static Properties getPropertiesFromFile(final File targetFile) throws IOException {
+    static final Properties getPropertiesFromFile(final File targetFile) throws IOException {
         Properties properties = new Properties();
         properties.load(Files.newReader(targetFile, Charset.defaultCharset()));
         return properties;

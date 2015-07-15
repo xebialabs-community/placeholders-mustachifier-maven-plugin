@@ -7,3 +7,11 @@ notifications:
   hipchat:
     rooms:
       secure: EHE0gqqjLcICY7CPynUXGlb/Ig2sGuBpnm32lK/H+vX4vnMaH0w9cktB8xZIV1jkVJ1tJYAojEsNJUNIV2aKcLTVEKdYigpcvJZNg4c9tlK60Khli5hbAEf5CFxBaq7aUySkewQQ2QcAmGjBUle4iLyo+PPXiQKkjtmQUfqDVxM=
+deploy:
+  provider: releases
+  api_key:
+    secure: ArSnJT4tM4Ty01pDFAF31/NbrHICHC5LamAmBFiYbKTU+22d0zTOmf5TMJvjdbvvHulB8/GpotuRJoia+fU6KjlMa7Ls2VG2UmXf2hwMni9YsrCxmKpzUYRjtFR9RYNZsPUbl1lfbnWh3DyJo1YW18K9OG74+/AR8zp0Cqz1ksU=
+  file: target/placeholders-mustachifier-maven-plugin-0.5.jar
+  on:
+    repo: xebialabs-community/placeholders-mustachifier-maven-plugin
+    tags: true

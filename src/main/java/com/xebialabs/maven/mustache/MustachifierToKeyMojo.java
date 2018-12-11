@@ -1,6 +1,7 @@
 package com.xebialabs.maven.mustache;
 
 import com.xebialabs.maven.mustache.transformer.MustacheToKey;
+import org.apache.maven.plugin.MojoFailureException;
 
 
 /**
@@ -13,7 +14,7 @@ import com.xebialabs.maven.mustache.transformer.MustacheToKey;
  */
 public class MustachifierToKeyMojo extends AbstractMustachifierMojo {
 
-    protected String transform(final String content) {
+    protected String transform(final String content) throws MojoFailureException {
         return new MustacheToKey(getBeforeDelimiter(), getAfterDelimiter(), getValueSeparator()).process(content);
     }
 

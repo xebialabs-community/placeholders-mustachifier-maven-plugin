@@ -58,3 +58,4 @@ the property file **after** the plugin execution
     param4=http://www.xebialabs.com:9090/xldeploy
     param5=benoit
 
+Setting the parameter <mandatoryValues>true</mandatoryValues> ensures that all keys must have a value in the valueProvider, if not, the Maven goal fails.

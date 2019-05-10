@@ -10,7 +10,7 @@ notifications:
 deploy:
   provider: releases
   api_key:
-    secure: ArSnJT4tM4Ty01pDFAF31/NbrHICHC5LamAmBFiYbKTU+22d0zTOmf5TMJvjdbvvHulB8/GpotuRJoia+fU6KjlMa7Ls2VG2UmXf2hwMni9YsrCxmKpzUYRjtFR9RYNZsPUbl1lfbnWh3DyJo1YW18K9OG74+/AR8zp0Cqz1ksU=
+    secure: FF+u1PjxvALghNFZ8uLMjY6MbfURo2cNVRiz1oLz1oqDzBwcOiyfs4Lpagt0KQ0ffCgPUBaYqs8MurH5Xoy59MlRF8HCqMoVBq2zJ+D5rUxKFhddCDZVz66wTSI0xJ04hcT8T6cip/l7dewB4p3pQFqTXl01WCV4bkpl0r1atRA=
   file: target/placeholders-mustachifier-maven-plugin-0.5.jar
   on:
     repo: xebialabs-community/placeholders-mustachifier-maven-plugin

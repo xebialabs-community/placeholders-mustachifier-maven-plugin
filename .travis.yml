@@ -4,9 +4,8 @@ jdk:
 - oraclejdk7
 - oraclejdk8
 notifications:
-  hipchat:
-    rooms:
-      secure: EHE0gqqjLcICY7CPynUXGlb/Ig2sGuBpnm32lK/H+vX4vnMaH0w9cktB8xZIV1jkVJ1tJYAojEsNJUNIV2aKcLTVEKdYigpcvJZNg4c9tlK60Khli5hbAEf5CFxBaq7aUySkewQQ2QcAmGjBUle4iLyo+PPXiQKkjtmQUfqDVxM=
+  slack:
+    secure: IRPCjMJOm3eKC8PwjsAVUXyxTgv8zC4BQadOORV1BFBfoXLalq4XJmesi3dWkVVJTf35SgKuqBTFvfEsVFEXwto1/QykNyZH7pe29XXN2PiL/dBC9cy7/qqqsh8+fnzFZXJOCM825XqAR06sOq5Xvl83a8IrA7zm5ysmw4jURPE=
 deploy:
   provider: releases
   api_key:

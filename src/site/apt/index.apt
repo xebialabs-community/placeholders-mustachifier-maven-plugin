@@ -8,15 +8,17 @@
  ------
 
 
-Placeholders Mustachifier Plugin
+Placeholder Mustachifier Maven Plugin
 
-  Transform a text file full of {{placeholder:value}} into a file with only {{placeholders}} or only values.
+  Simplifies the process of using configuration files that have 'mustachified' property placeholders.  This is a 
+  common practice for applications deployed by XL Deploy.  Basically it transforms a text file full of {{placeholder:value}} 
+  into a file with only {{placeholder}} or only 'value's.
 
   Further information is available on
 
-  * {{{https://github.com/xebialabs-community/mustachifier-maven-plugin} The project site}}
+  * {{{https://github.com/xebialabs-community/placeholders-mustachifier-maven-plugin} The GitHub project site}}
 
   * Plugin Documentation/Goals on this site
 
-  * via the "help" goal of the plugin itself
+  * Via the "help" goal of the plugin itself
 

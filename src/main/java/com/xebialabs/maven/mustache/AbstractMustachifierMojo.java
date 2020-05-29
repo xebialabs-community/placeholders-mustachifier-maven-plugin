@@ -87,7 +87,7 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
         }
     }
 
-    final void saveSingleFile(final SingleFile aFile) {
+    final void saveSingleFile(final SingleFile aFile) throws MojoFailureException {
         TFile input = new TFile(aFile.getSourceFile());
         TFile output = new TFile(aFile.getTargetFileName());
         try {
@@ -117,7 +117,7 @@ public abstract class AbstractMustachifierMojo extends AbstractMojo {
         return builder.toString();
     }
 
-    protected abstract String transform(final String content);
+    protected abstract String transform(final String content) throws MojoFailureException;
 
     public List<FileSet> getFilesets() {
         return filesets;

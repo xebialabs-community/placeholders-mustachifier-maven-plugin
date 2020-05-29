@@ -1,6 +1,7 @@
 package com.xebialabs.maven.mustache;
 
 import com.xebialabs.maven.mustache.transformer.MustacheToValue;
+import org.apache.maven.plugin.MojoFailureException;
 
 
 /**
@@ -15,15 +16,21 @@ public class MustachifierToValueMojo extends AbstractMustachifierMojo {
 
 
     /**
-     * The separator format from the placeholder name and the default value
+     * The input for values (property file or XLDeploy instance
      *
      * @parameter
      */
     protected ValueProviderConfiguration valueProvider = new ValueProviderConfiguration();
 
+    /**
+     * True if the goal should rise an error if not finding a value, false by default otherwise
+     *
+     * @parameter
+     */
+    protected Boolean mandatoryValues = false;
 
-    protected String transform(final String content) {
-        return new MustacheToValue(getBeforeDelimiter(), getAfterDelimiter(), getValueSeparator(), valueProvider.getValueProvider()).process(content);
+    protected String transform(final String content) throws MojoFailureException {
+        return new MustacheToValue(getBeforeDelimiter(), getAfterDelimiter(), getValueSeparator(), valueProvider.getValueProvider(), mandatoryValues).process(content);
     }
 
     public ValueProviderConfiguration getValueProvider() {
@@ -32,5 +39,13 @@ public class MustachifierToValueMojo extends AbstractMustachifierMojo {
 
     public void setValueProvider(final ValueProviderConfiguration valueProvider) {
         this.valueProvider = valueProvider;
+    }
+
+    public void setMandatoryValues(final Boolean mandatoryValues) {
+        this.mandatoryValues = mandatoryValues;
+    }
+
+    public Boolean isMandatoryValues() {
+        return mandatoryValues;
     }
 }

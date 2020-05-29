@@ -2,6 +2,8 @@ package com.xebialabs.maven.mustache.transformer;
 
 import com.samskivert.mustache.DefaultCollector;
 import com.samskivert.mustache.Mustache;
+import com.samskivert.mustache.MustacheException;
+import org.apache.maven.plugin.MojoFailureException;
 
 public abstract class DefaultMustacheCollector extends DefaultCollector implements Mustache.VariableFetcher {
 
@@ -28,7 +30,12 @@ public abstract class DefaultMustacheCollector extends DefaultCollector implemen
                 .standardsMode(true);
     }
 
-    public String process(String content) {
-        return getCompiler().compile(content).execute(new Object());
+    public String process(String content) throws MojoFailureException {
+        try {
+            return getCompiler().compile(content).execute(new Object());
+        } catch (MustacheException e) {
+            throw new MojoFailureException(e.getMessage());
+        }
+
     }
 }
